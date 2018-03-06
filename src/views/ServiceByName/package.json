@@ -1,0 +1,6 @@
+{
+  "name": "service-by-name",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ServiceByName.js"
+}

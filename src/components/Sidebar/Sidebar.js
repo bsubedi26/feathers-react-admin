@@ -2,16 +2,46 @@ import React, {Component} from 'react';
 import {NavLink} from 'react-router-dom';
 import {Badge, Nav, NavItem, NavLink as RsNavLink} from 'reactstrap';
 import classNames from 'classnames';
-import nav from './_nav';
 import SidebarFooter from './../SidebarFooter';
 import SidebarForm from './../SidebarForm';
 import SidebarHeader from './../SidebarHeader';
 import SidebarMinimizer from './../SidebarMinimizer';
 import feathers from "util/feathers";
-console.log('feathers: ', feathers);
+
+const initialNavItems = [
+  {
+    name: 'Dashboard',
+    url: '/dashboard',
+    icon: 'icon-speedometer',
+    badge: {
+      variant: 'info',
+      text: 'NEW'
+    }
+  }
+]
 
 class Sidebar extends Component {
 
+  state = {
+    navItems: initialNavItems
+  }
+
+  componentDidMount () {
+    const services = Object.keys(feathers.services);
+    const navItems = services.map(service => {
+      return {
+        name: service,
+        url: `/service/${service}`,
+        icon: 'icon-speedometer',
+        badge: {
+          variant: 'info',
+          text: 'NEW'
+        }
+      }
+    })
+    this.setState({ navItems: this.state.navItems.concat(navItems)});
+  }
+  
   handleClick = (e) => {
     e.preventDefault();
     e.target.parentElement.classList.toggle('open');
@@ -144,7 +174,7 @@ class Sidebar extends Component {
         <SidebarForm/>
         <nav className="sidebar-nav">
           <Nav>
-            {navList(nav.items)}
+            {navList(this.state.navItems)}
           </Nav>
         </nav>
         <SidebarFooter/>

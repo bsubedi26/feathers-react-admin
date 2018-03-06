@@ -8,6 +8,7 @@ import Aside from 'components/Aside/';
 import Footer from 'components/Footer/';
 
 import Dashboard from 'views/Dashboard/';
+import ServiceByName from 'views/ServiceByName/';
 
 class App extends Component {
   render() {
@@ -20,7 +21,8 @@ class App extends Component {
             <Breadcrumb />
             <Container fluid>
               <Switch>
-                <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
+                <Route path="/dashboard" name="Dashboard" component={Dashboard} />
+                <Route path="/service/:name" name="ServiceByName" component={ServiceByName}/>
                 <Redirect from="/" to="/dashboard"/>
               </Switch>
             </Container>
