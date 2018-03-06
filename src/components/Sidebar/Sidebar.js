@@ -7,30 +7,23 @@ import SidebarFooter from './../SidebarFooter';
 import SidebarForm from './../SidebarForm';
 import SidebarHeader from './../SidebarHeader';
 import SidebarMinimizer from './../SidebarMinimizer';
+import feathers from "util/feathers";
+console.log('feathers: ', feathers);
 
 class Sidebar extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-    this.activeRoute = this.activeRoute.bind(this);
-    this.hideMobile = this.hideMobile.bind(this);
-  }
-
-
-  handleClick(e) {
+  handleClick = (e) => {
     e.preventDefault();
     e.target.parentElement.classList.toggle('open');
   }
 
-  activeRoute(routeName, props) {
+  activeRoute = (routeName, props) => {
     // return this.props.location.pathname.indexOf(routeName) > -1 ? 'nav-item nav-dropdown open' : 'nav-item nav-dropdown';
     return props.location.pathname.indexOf(routeName) > -1 ? 'nav-item nav-dropdown open' : 'nav-item nav-dropdown';
 
   }
 
-  hideMobile() {
+  hideMobile = () => {
     if (document.body.classList.contains('sidebar-mobile-show')) {
       document.body.classList.toggle('sidebar-mobile-show')
     }
